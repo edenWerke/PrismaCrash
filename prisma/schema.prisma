@@ -15,7 +15,7 @@ datasource db {
 }
 model User{
   id Int @id
-  email String
+  email String @unique
   name String
   role String
 }
