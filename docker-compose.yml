@@ -1,0 +1,19 @@
+version: '3'
+services:
+  db:
+    image: postgres
+    restart: always
+    volumes:
+      - ./data/db:/var/lib/postgresql/data   # space is required after the dash
+    ports:
+      - "5432:5432"                          # quotes recommended
+    environment:
+      POSTGRES_DB: testDB                    # use key: value, not list
+      POSTGRES_USER: postgres
+      POSTGRES_PASSWORD: postgres
+
+  adminer:
+    image: adminer
+    restart: always
+    ports:
+      - "8080:8080"
