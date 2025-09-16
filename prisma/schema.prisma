@@ -14,18 +14,32 @@ datasource db {
   url      = env("DATABASE_URL")
 }
 model User{
-  id Int  @default(autoincrement())
+  id Int @id  @default(autoincrement())
   email String @unique
   name String @map("firstName")
   role Role? @default(User)
+  profileId Int? @unique
+  profile Profile? @relation(fields:[profileId],references: [id])
 
   @@map("users")
-  @@id([email, name])
+
 
 
   @@unique([name,role])
   @@index([id,email])
 }
+
+model Profile{
+  id Int @id @default(autoincrement())
+  bio String
+
+  user User?
+}
+
+
+
+
+
 // list of allowed options
 enum Role{
   User
