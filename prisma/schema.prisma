@@ -17,7 +17,7 @@ model User{
   id Int  @default(autoincrement())
   email String @unique
   name String @map("firstName")
-  role String?
+  role Role? @default(User)
 
   @@map("users")
   @@id([email, name])
@@ -25,4 +25,9 @@ model User{
 
   @@unique([name,role])
   @@index([id,email])
+}
+// list of allowed options
+enum Role{
+  User
+  ADMIN
 }
