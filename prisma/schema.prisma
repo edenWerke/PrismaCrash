@@ -13,6 +13,8 @@ datasource db {
   provider = "postgresql"
   url      = env("DATABASE_URL")
 }
+
+
 // one to one relation 
 model User{
   id Int @id  @default(autoincrement())
@@ -24,11 +26,12 @@ profile Profile?
   post Post[]
   @@map("users")
 
-
-
   @@unique([name,role])
   @@index([id,email])
 }
+
+
+
 
 model Profile{
   id Int @id @default(autoincrement())
@@ -38,6 +41,9 @@ model Profile{
 
  
 }
+
+
+
 model Post{
   id Int @id @default(autoincrement())
   authorId Int
@@ -46,26 +52,15 @@ model Post{
   updatedAt DateTime @updatedAt
   published Boolean @default(false)
   author User @relation(fields: [authorId],references: [id])
+  catagories Catagory[]
 }
+// when we ceate many to many relation we dont need to rite @relation
 
-
-// model User{
-//   firstName String
-//   lastName String
-//   profile Profile?
-
-
-//   @@id([firstName,lastName])
-// }
-
-// model Profile{
-//   id  Int @id
-//   userFirstName String
-//   userLastName String 
-//   user User @relation(fields: [userFirstName,userLastName],references: [firstName,lastName])
-//   @@unique([userFirstName,userLastName])
-// }
-
+model Catagory{
+  id Int @id @default(autoincrement())
+  name String 
+  posts Post[]
+}
 
 
 
