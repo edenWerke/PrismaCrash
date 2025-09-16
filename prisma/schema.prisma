@@ -13,29 +13,47 @@ datasource db {
   provider = "postgresql"
   url      = env("DATABASE_URL")
 }
+// model User{
+//   id Int @id  @default(autoincrement())
+//   email String @unique
+//   name String @map("firstName")
+//   role Role? @default(User)
+//   profileId Int? @unique
+//   profile Profile? @relation(fields:[profileId],references: [id])
+
+//   @@map("users")
+
+
+
+//   @@unique([name,role])
+//   @@index([id,email])
+// }
+
+// model Profile{
+//   id Int @id @default(autoincrement())
+//   bio String
+
+//   user User?
+// }
+
+
+
 model User{
-  id Int @id  @default(autoincrement())
-  email String @unique
-  name String @map("firstName")
-  role Role? @default(User)
-  profileId Int? @unique
-  profile Profile? @relation(fields:[profileId],references: [id])
-
-  @@map("users")
+  firstName String
+  lastName String
+  profile Profile?
 
 
-
-  @@unique([name,role])
-  @@index([id,email])
+  @@id([firstName,lastName])
 }
 
 model Profile{
-  id Int @id @default(autoincrement())
-  bio String
-
-  user User?
+  id  Int @id
+  userFirstName String
+  userLastName String 
+  user User @relation(fields: [userFirstName,userLastName],references: [firstName,lastName])
+  @@unique([userFirstName,userLastName])
 }
-
 
 
 
