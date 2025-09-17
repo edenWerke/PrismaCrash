@@ -8,7 +8,7 @@ import prisma from "@/lib/prisma";
 
 export async function GET() {
   try {
-    const posts = await prisma.post.findMany();
+    const posts = await prisma.post.findFirst();
     return new Response(JSON.stringify(posts), {
       status: 200,
       headers: {

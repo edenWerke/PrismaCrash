@@ -21,13 +21,31 @@ const userData: Prisma.UserCreateInput[] = [
       ],
     },
   },
+    {
+    name: "jhon22",
+    email: "jhon22@prisma.com",
+    post: {
+      create: [
+        {
+          title: "Join the ssPrisma Slack",
+          published: true,
+          catagories: {
+            create: [
+              { name: "furniture" },
+              { name: "fashion" },
+            ],
+          },
+        },
+      ],
+    },
+  },
   {
     name: "jack",
     email: "jack@prisma.io",
     post: {
       create: [
         {
-          title: "Follow Prisma",
+          title: "Follow P'''''''''''''''''''''''''''''risma",
           published: true,
           catagories: {
             connect: [{ id: 1 }], // Connect to existing category ID
