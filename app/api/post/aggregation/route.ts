@@ -7,6 +7,15 @@ export async function GET(){
         },
         _avg:{
 likeNum:true
+        },
+        _count:{
+            id:true
+        },
+        _max:{
+            likeNum:true
+        },
+        _min:{
+            likeNum:true
         }
     })
     return new Response(JSON.stringify(aggregations))
