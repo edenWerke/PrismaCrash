@@ -7,7 +7,8 @@ export async function GET(){
             OR:[
               {
                 title:{
-                  contains:"Learn"
+                  contains:"learn",
+                  mode:"insensitive"
                 }
               },
               {
