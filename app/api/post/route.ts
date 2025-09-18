@@ -15,7 +15,10 @@ export async function GET(){
                   contains:"Join"
                 }
               }
-            ]
+            ],
+            AND:{
+              published:true
+            }
         }
     })
     return new Response(JSON.stringify(posts))
