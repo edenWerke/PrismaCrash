@@ -4,8 +4,8 @@ export async function Get(){
     const posts=await prisma.post.findMany({
 
 
-        skip:0,
-        take:10
+        skip:1,
+        take:1
 
     })
     return new Response(JSON.stringify(posts))
